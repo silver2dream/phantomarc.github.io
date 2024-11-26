@@ -1,99 +1,385 @@
+<!DOCTYPE html>
 <html lang="en">
- <head>
-  <meta charset="utf-8"/>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <title>
-   Phantom Arc
-  </title>
-  <script src="https://cdn.tailwindcss.com">
-  </script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
-  <style>
-   body {
-            font-family: 'Inter', sans-serif;
-        }
-  </style>
- </head>
- <body class="bg-white">
-  <header class="container mx-auto px-4 py-6 flex justify-between items-center">
-   <div class="text-2xl font-bold italic">
+<head>
+ <meta charset="utf-8"/>
+ <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+ <title>Phantom Arc</title>
+ <script src="https://cdn.tailwindcss.com"></script>
+ <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+ <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+ <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet"/>
+ <style>
+  body {
+   font-family: 'Inter', sans-serif;
+   background-color: #0f0f0f;
+   color: #ffffff;
+  }
+  .hero {
+   background-image: url('https://runon.tw/phantomarc-hero-bg.jpg'); /* 替換為您的英雄區背景圖 */
+   background-size: cover;
+   background-position: center;
+   height: 100vh;
+   position: relative;
+  }
+  .hero::after {
+   content: '';
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   background-color: rgba(0, 0, 0, 0.6);
+  }
+  .hero-content {
+   position: relative;
+   z-index: 1;
+  }
+  .language-toggle {
+   cursor: pointer;
+  }
+  .hidden {
+   display: none;
+  }
+ </style>
+</head>
+<body>
+<!-- Header -->
+<header class="container mx-auto px-6 py-4 flex justify-between items-center">
+ <div class="text-3xl font-bold italic tracking-wider">
+  Phantom Arc
+ </div>
+ <nav class="hidden md:flex space-x-8">
+  <a class="hover:text-blue-400 transition" href="#about" data-lang="en">About Us</a>
+  <a class="hover:text-blue-400 transition" href="#about" data-lang="zh" class="hidden">關於我們</a>
+  <a class="hover:text-blue-400 transition" href="#games" data-lang="en">Games</a>
+  <a class="hover:text-blue-400 transition" href="#games" data-lang="zh" class="hidden">遊戲</a>
+  <a class="hover:text-blue-400 transition" href="#team" data-lang="en">Team</a>
+  <a class="hover:text-blue-400 transition" href="#team" data-lang="zh" class="hidden">團隊</a>
+  <a class="hover:text-blue-400 transition" href="#news" data-lang="en">News</a>
+  <a class="hover:text-blue-400 transition" href="#news" data-lang="zh" class="hidden">新聞</a>
+  <a class="hover:text-blue-400 transition" href="#contact" data-lang="en">Contact</a>
+  <a class="hover:text-blue-400 transition" href="#contact" data-lang="zh" class="hidden">聯絡我們</a>
+ </nav>
+ <div class="flex items-center space-x-4">
+  <!-- Language Toggle Buttons -->
+  <button id="en-btn" class="language-toggle text-sm px-2 py-1 border rounded bg-gray-700 hover:bg-gray-600">EN</button>
+  <button id="zh-btn" class="language-toggle text-sm px-2 py-1 border rounded bg-gray-700 hover:bg-gray-600">中文</button>
+  <!-- Mobile Menu Button -->
+  <div class="md:hidden">
+   <button id="menu-btn" class="text-2xl focus:outline-none">
+    <i class="fas fa-bars"></i>
+   </button>
+  </div>
+ </div>
+</header>
+
+<!-- Mobile Menu -->
+<div id="mobile-menu" class="hidden md:hidden bg-gray-800">
+ <a class="block px-4 py-2 text-white hover:bg-gray-700" href="#about" data-lang="en">About Us</a>
+ <a class="block px-4 py-2 text-white hover:bg-gray-700" href="#about" data-lang="zh" class="hidden">關於我們</a>
+ <a class="block px-4 py-2 text-white hover:bg-gray-700" href="#games" data-lang="en">Games</a>
+ <a class="block px-4 py-2 text-white hover:bg-gray-700" href="#games" data-lang="zh" class="hidden">遊戲</a>
+ <a class="block px-4 py-2 text-white hover:bg-gray-700" href="#team" data-lang="en">Team</a>
+ <a class="block px-4 py-2 text-white hover:bg-gray-700" href="#team" data-lang="zh" class="hidden">團隊</a>
+ <a class="block px-4 py-2 text-white hover:bg-gray-700" href="#news" data-lang="en">News</a>
+ <a class="block px-4 py-2 text-white hover:bg-gray-700" href="#news" data-lang="zh" class="hidden">新聞</a>
+ <a class="block px-4 py-2 text-white hover:bg-gray-700" href="#contact" data-lang="en">Contact</a>
+ <a class="block px-4 py-2 text-white hover:bg-gray-700" href="#contact" data-lang="zh" class="hidden">聯絡我們</a>
+</div>
+
+<!-- Hero Section -->
+<section class="hero flex items-center justify-center" data-aos="fade-up">
+ <div class="hero-content text-center">
+  <h1 class="text-6xl font-bold mb-4 font-orbitron" data-lang="en">Phantom Arc</h1>
+  <h1 class="text-6xl font-bold mb-4 font-orbitron hidden" data-lang="zh">幻弧圓弧</h1>
+  <p class="text-2xl mb-8" data-lang="en">Creating Unforgettable Gaming Experiences</p>
+  <p class="text-2xl mb-8 hidden" data-lang="zh">創造令人難忘的遊戲體驗</p>
+  <a href="#games" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-full transition" data-lang="en">Explore Our Games</a>
+  <a href="#games" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-full transition hidden" data-lang="zh">探索我們的遊戲</a>
+ </div>
+</section>
+
+<!-- Main Content -->
+<main class="container mx-auto px-6 py-12">
+ <!-- Vision Section -->
+ <section id="about" class="mb-16" data-aos="fade-up">
+  <h2 class="text-4xl font-bold mb-6 text-center" data-lang="en">Our Vision</h2>
+  <h2 class="text-4xl font-bold mb-6 text-center hidden" data-lang="zh">我們的願景</h2>
+  <div class="flex flex-col lg:flex-row items-center gap-12">
+   <div class="lg:w-1/2">
+    <p class="text-gray-300 mb-8" data-lang="en">
+     At Phantom Arc, we strive to create immersive gaming experiences that captivate players and build a strong community. Our diverse team combines creativity and innovation to push the boundaries of storytelling and gameplay mechanics.
+    </p>
+    <p class="text-gray-300 mb-8 hidden" data-lang="zh">
+     在 Phantom Arc，我們致力於打造引人入勝的遊戲體驗，讓玩家沉浸其中並建立強大的社群。我們多元的團隊結合了創意與創新，推動故事敘述和遊戲機制的邊界。
+    </p>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+     <div>
+      <h3 class="text-3xl font-semibold mb-2" data-lang="en">3 Countries</h3>
+      <h3 class="text-3xl font-semibold mb-2 hidden" data-lang="zh">3個國家</h3>
+      <p class="text-xl font-medium text-blue-400" data-lang="en">Represented</p>
+      <p class="text-xl font-medium text-blue-400 hidden" data-lang="zh">代表</p>
+      <p class="text-gray-400 mt-2" data-lang="en">
+       Our team members hail from diverse countries, bringing a wealth of perspectives that enrich our creative process.
+      </p>
+      <p class="text-gray-400 mt-2 hidden" data-lang="zh">
+       我們的團隊成員來自不同國家，帶來豐富的觀點，豐富了我們的創作過程。
+      </p>
+     </div>
+     <div>
+      <h3 class="text-3xl font-semibold mb-2" data-lang="en">10+ Games</h3>
+      <h3 class="text-3xl font-semibold mb-2 hidden" data-lang="zh">10+ 遊戲</h3>
+      <p class="text-xl font-medium text-blue-400" data-lang="en">Released</p>
+      <p class="text-xl font-medium text-blue-400 hidden" data-lang="zh">已發佈</p>
+      <p class="text-gray-400 mt-2" data-lang="en">
+       We have released multiple games across various genres and styles, catering to different player preferences.
+      </p>
+      <p class="text-gray-400 mt-2 hidden" data-lang="zh">
+       我們已發佈多款遊戲，涵蓋各種不同的遊戲類型和風格，滿足不同玩家的需求。
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="lg:w-1/2" data-aos="zoom-in">
+    <img alt="Phantom Arc Team" class="rounded-lg shadow-lg w-full h-auto max-w-md mx-auto" src="http://runon.tw/phantomarc.mp4" />
+   </div>
+  </div>
+ </section>
+
+ <!-- Our Games Section -->
+ <section id="games" class="mb-16" data-aos="fade-up">
+  <h2 class="text-4xl font-bold mb-6 text-center" data-lang="en">Our Games</h2>
+  <h2 class="text-4xl font-bold mb-6 text-center hidden" data-lang="zh">我們的遊戲</h2>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+   <!-- Game Item Example -->
+   <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg transform hover:scale-105 transition duration-300">
+    <img src="https://runon.tw/game1.jpg" alt="Game 1" class="w-full h-48 object-cover">
+    <div class="p-4">
+     <h3 class="text-2xl font-semibold mb-2" data-lang="en">Game Title 1</h3>
+     <h3 class="text-2xl font-semibold mb-2 hidden" data-lang="zh">遊戲名稱 1</h3>
+     <p class="text-gray-400 mb-4" data-lang="en">A brief description introducing the game's features and gameplay.</p>
+     <p class="text-gray-400 mb-4 hidden" data-lang="zh">簡短的遊戲描述，介紹遊戲特色和玩法。</p>
+     <a href="#" class="text-blue-400 hover:underline" data-lang="en">Learn More</a>
+     <a href="#" class="text-blue-400 hover:underline hidden" data-lang="zh">了解更多</a>
+    </div>
+   </div>
+   <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg transform hover:scale-105 transition duration-300">
+    <img src="https://runon.tw/game2.jpg" alt="Game 2" class="w-full h-48 object-cover">
+    <div class="p-4">
+     <h3 class="text-2xl font-semibold mb-2" data-lang="en">Game Title 2</h3>
+     <h3 class="text-2xl font-semibold mb-2 hidden" data-lang="zh">遊戲名稱 2</h3>
+     <p class="text-gray-400 mb-4" data-lang="en">A brief description introducing the game's features and gameplay.</p>
+     <p class="text-gray-400 mb-4 hidden" data-lang="zh">簡短的遊戲描述，介紹遊戲特色和玩法。</p>
+     <a href="#" class="text-blue-400 hover:underline" data-lang="en">Learn More</a>
+     <a href="#" class="text-blue-400 hover:underline hidden" data-lang="zh">了解更多</a>
+    </div>
+   </div>
+   <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg transform hover:scale-105 transition duration-300">
+    <img src="https://runon.tw/game3.jpg" alt="Game 3" class="w-full h-48 object-cover">
+    <div class="p-4">
+     <h3 class="text-2xl font-semibold mb-2" data-lang="en">Game Title 3</h3>
+     <h3 class="text-2xl font-semibold mb-2 hidden" data-lang="zh">遊戲名稱 3</h3>
+     <p class="text-gray-400 mb-4" data-lang="en">A brief description introducing the game's features and gameplay.</p>
+     <p class="text-gray-400 mb-4 hidden" data-lang="zh">簡短的遊戲描述，介紹遊戲特色和玩法。</p>
+     <a href="#" class="text-blue-400 hover:underline" data-lang="en">Learn More</a>
+     <a href="#" class="text-blue-400 hover:underline hidden" data-lang="zh">了解更多</a>
+    </div>
+   </div>
+  </div>
+ </section>
+
+ <!-- Team Section -->
+ <section id="team" class="mb-16" data-aos="fade-up">
+  <h2 class="text-4xl font-bold mb-6 text-center" data-lang="en">Our Team</h2>
+  <h2 class="text-4xl font-bold mb-6 text-center hidden" data-lang="zh">我們的團隊</h2>
+  <div class="flex flex-wrap justify-center gap-8">
+   <!-- Team Member Example -->
+   <div class="w-60 text-center" data-aos="flip-left">
+    <img src="https://runon.tw/team1.jpg" alt="Team Member 1" class="rounded-full w-full h-60 object-cover shadow-lg">
+    <h3 class="text-2xl font-semibold mt-4" data-lang="en">Member Name</h3>
+    <h3 class="text-2xl font-semibold mt-4 hidden" data-lang="zh">成員姓名</h3>
+    <p class="text-gray-400" data-lang="en">Position</p>
+    <p class="text-gray-400 hidden" data-lang="zh">職位名稱</p>
+   </div>
+   <div class="w-60 text-center" data-aos="flip-left" data-aos-delay="100">
+    <img src="https://runon.tw/team2.jpg" alt="Team Member 2" class="rounded-full w-full h-60 object-cover shadow-lg">
+    <h3 class="text-2xl font-semibold mt-4" data-lang="en">Member Name</h3>
+    <h3 class="text-2xl font-semibold mt-4 hidden" data-lang="zh">成員姓名</h3>
+    <p class="text-gray-400" data-lang="en">Position</p>
+    <p class="text-gray-400 hidden" data-lang="zh">職位名稱</p>
+   </div>
+   <div class="w-60 text-center" data-aos="flip-left" data-aos-delay="200">
+    <img src="https://runon.tw/team3.jpg" alt="Team Member 3" class="rounded-full w-full h-60 object-cover shadow-lg">
+    <h3 class="text-2xl font-semibold mt-4" data-lang="en">Member Name</h3>
+    <h3 class="text-2xl font-semibold mt-4 hidden" data-lang="zh">成員姓名</h3>
+    <p class="text-gray-400" data-lang="en">Position</p>
+    <p class="text-gray-400 hidden" data-lang="zh">職位名稱</p>
+   </div>
+  </div>
+ </section>
+
+ <!-- News Section -->
+ <section id="news" class="mb-16" data-aos="fade-up">
+  <h2 class="text-4xl font-bold mb-6 text-center" data-lang="en">Latest News</h2>
+  <h2 class="text-4xl font-bold mb-6 text-center hidden" data-lang="zh">最新消息</h2>
+  <div class="space-y-6">
+   <!-- News Item Example -->
+   <div class="bg-gray-800 p-6 rounded-lg shadow-lg transform hover:translate-y-1 transition duration-300">
+    <h3 class="text-2xl font-semibold mb-2" data-lang="en">News Title 1</h3>
+    <h3 class="text-2xl font-semibold mb-2 hidden" data-lang="zh">新聞標題 1</h3>
+    <p class="text-gray-400 mb-4" data-lang="en">Published on: 2024-04-27</p>
+    <p class="text-gray-400 mb-4 hidden" data-lang="zh">發布日期：2024-04-27</p>
+    <p class="text-gray-300" data-lang="en">This is a summary of the news content, introducing the latest updates or events.</p>
+    <p class="text-gray-300 hidden" data-lang="zh">這是一段新聞內容的摘要，介紹最新的更新或活動。</p>
+    <a href="#" class="text-blue-400 hover:underline" data-lang="en">Read More</a>
+    <a href="#" class="text-blue-400 hover:underline hidden" data-lang="zh">閱讀更多</a>
+   </div>
+   <div class="bg-gray-800 p-6 rounded-lg shadow-lg transform hover:translate-y-1 transition duration-300">
+    <h3 class="text-2xl font-semibold mb-2" data-lang="en">News Title 2</h3>
+    <h3 class="text-2xl font-semibold mb-2 hidden" data-lang="zh">新聞標題 2</h3>
+    <p class="text-gray-400 mb-4" data-lang="en">Published on: 2024-03-15</p>
+    <p class="text-gray-400 mb-4 hidden" data-lang="zh">發布日期：2024-03-15</p>
+    <p class="text-gray-300" data-lang="en">This is a summary of the news content, introducing the latest updates or events.</p>
+    <p class="text-gray-300 hidden" data-lang="zh">這是一段新聞內容的摘要，介紹最新的更新或活動。</p>
+    <a href="#" class="text-blue-400 hover:underline" data-lang="en">Read More</a>
+    <a href="#" class="text-blue-400 hover:underline hidden" data-lang="zh">閱讀更多</a>
+   </div>
+  </div>
+ </section>
+
+ <!-- Contact Section -->
+ <section id="contact" class="mb-16" data-aos="fade-up">
+  <h2 class="text-4xl font-bold mb-6 text-center" data-lang="en">Contact Us</h2>
+  <h2 class="text-4xl font-bold mb-6 text-center hidden" data-lang="zh">聯絡我們</h2>
+  <div class="flex justify-center">
+   <form class="w-full max-w-lg bg-gray-800 p-8 rounded-lg shadow-lg">
+    <div class="mb-4">
+     <label class="block text-gray-300 text-sm font-bold mb-2" for="name" data-lang="en">
+      Name
+     </label>
+     <label class="block text-gray-300 text-sm font-bold mb-2 hidden" for="name" data-lang="zh">
+      姓名
+     </label>
+     <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" type="text" placeholder="Your Name" data-lang="en">
+     <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline hidden" id="name-zh" type="text" placeholder="您的姓名" data-lang="zh">
+    </div>
+    <div class="mb-4">
+     <label class="block text-gray-300 text-sm font-bold mb-2" for="email" data-lang="en">
+      Email
+     </label>
+     <label class="block text-gray-300 text-sm font-bold mb-2 hidden" for="email" data-lang="zh">
+      電子郵件
+     </label>
+     <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="email" placeholder="Your Email" data-lang="en">
+     <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline hidden" id="email-zh" type="email" placeholder="您的電子郵件" data-lang="zh">
+    </div>
+    <div class="mb-6">
+     <label class="block text-gray-300 text-sm font-bold mb-2" for="message" data-lang="en">
+      Message
+     </label>
+     <label class="block text-gray-300 text-sm font-bold mb-2 hidden" for="message" data-lang="zh">
+      訊息
+     </label>
+     <textarea class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="message" rows="5" placeholder="Your Message" data-lang="en"></textarea>
+     <textarea class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline hidden" id="message-zh" rows="5" placeholder="您的訊息" data-lang="zh"></textarea>
+    </div>
+    <div class="flex items-center justify-center">
+     <button class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit" data-lang="en">
+      Send
+     </button>
+     <button class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline hidden" type="submit" data-lang="zh">
+      送出
+     </button>
+    </div>
+   </form>
+  </div>
+ </section>
+</main>
+
+<!-- Footer -->
+<footer class="bg-gray-900 py-8">
+ <div class="container mx-auto px-6">
+  <div class="flex flex-col md:flex-row justify-between items-center mb-8">
+   <div class="text-3xl font-bold italic">
     Phantom Arc
    </div>
-   <nav class="flex items-center space-x-6">
-    <a class="text-gray-600" href="http://runon.tw/">
-     About Us
-    </a>
-    <a class="text-blue-600" href="http://runon.tw/games.html">
-     Games
-    </a>
+   <nav class="flex space-x-6 mt-4 md:mt-0">
+    <a class="hover:text-blue-400 transition" href="#about" data-lang="en">About Us</a>
+    <a class="hover:text-blue-400 transition hidden" href="#about" data-lang="zh">關於我們</a>
+    <a class="hover:text-blue-400 transition" href="#games" data-lang="en">Games</a>
+    <a class="hover:text-blue-400 transition hidden" href="#games" data-lang="zh">遊戲</a>
+    <a class="hover:text-blue-400 transition" href="#team" data-lang="en">Team</a>
+    <a class="hover:text-blue-400 transition hidden" href="#team" data-lang="zh">團隊</a>
+    <a class="hover:text-blue-400 transition" href="#news" data-lang="en">News</a>
+    <a class="hover:text-blue-400 transition hidden" href="#news" data-lang="zh">新聞</a>
+    <a class="hover:text-blue-400 transition" href="#contact" data-lang="en">Contact</a>
+    <a class="hover:text-blue-400 transition hidden" href="#contact" data-lang="zh">聯絡我們</a>
    </nav>
-  </header>
-  <main class="container mx-auto px-4">
-   <section class="mb-16">
-    <h1 class="text-5xl font-bold mb-6">
-     Our Mission &amp; Vision
-    </h1>
-    <div class="flex gap-12">
-     <div class="w-1/2">
-      <p class="text-gray-600 mb-8">
-       At Phantom Arc, we aim to craft immersive gaming experiences that captivate players and foster a sense of community. Our diverse team combines creativity and innovation to push the boundaries of storytelling and gameplay mechanics.
-      </p>
-      <div class="grid grid-cols-2 gap-8">
-       <div>
-        <h3 class="text-4xl font-bold mb-2">
-         3 countries
-        </h3>
-        <p class="text-xl font-medium">
-         represented
-        </p>
-        <p class="text-gray-600 mt-2">
-         Our team members hail from diverse countries, bringing a wealth of perspectives that enrich our creative process.
-        </p>
-       </div>
-      </div>
-     </div>
-     <div class="w-1/2">
-      <img alt="A group of diverse team members collaborating on a game design project, gathered around a table with sketches and prototypes. The room has vibrant game artwork on the walls and a 'Phantom Arc Team' sign visible." class="rounded-lg w-full h-auto" height="400" src="https://runon.tw/phantomarc.png" width="600"/>
-     </div>
-    </div>
-   </section>
-  </main>
-  <footer class="bg-gray-100 py-8">
-   <div class="container mx-auto px-4">
-    <div class="flex justify-between items-center mb-8">
-     <div class="text-2xl font-bold italic">
-      Phantom Arc
-     </div>
-     <nav class="flex space-x-6">
-      <a class="text-gray-600" href="http://runon.tw/">
-       About Us
-      </a>
-      <a class="text-gray-600" href="http://runon.tw/games.html">
-       Games
-      </a>
-     </nav>
-     <div class="flex space-x-4">
-      <a class="text-gray-600" href="#">
-       <i class="fab fa-facebook-f">
-       </i>
-      </a>
-      <a class="text-gray-600" href="#">
-       <i class="fab fa-instagram">
-       </i>
-      </a>
-      <a class="text-gray-600" href="#">
-       <i class="fab fa-twitter">
-       </i>
-      </a>
-     </div>
-    </div>
-    <div class="text-center text-gray-600 text-sm">
-     <p>
-      © 2024 Phantom Arc. All rights reserved. Our mission is to create engaging and enjoyable games for players worldwide.
-     </p>
-    </div>
+   <div class="flex space-x-4 mt-4 md:mt-0">
+    <a class="text-gray-400 hover:text-blue-400 transition" href="#">
+     <i class="fab fa-facebook-f"></i>
+    </a>
+    <a class="text-gray-400 hover:text-blue-400 transition" href="#">
+     <i class="fab fa-instagram"></i>
+    </a>
+    <a class="text-gray-400 hover:text-blue-400 transition" href="#">
+     <i class="fab fa-twitter"></i>
+    </a>
    </div>
-  </footer>
- </body>
+  </div>
+  <div class="text-center text-gray-500 text-sm">
+   <p data-lang="en">
+    © 2024 Phantom Arc. All rights reserved. Our mission is to create engaging and enjoyable games for players worldwide.
+   </p>
+   <p data-lang="zh" class="hidden">
+    © 2024 Phantom Arc. 版權所有。我們的使命是為全球玩家創造引人入勝且愉快的遊戲體驗。
+   </p>
+  </div>
+ </div>
+</footer>
+
+<!-- JavaScript for Mobile Menu and Language Toggle -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script>
+ // Initialize AOS
+ AOS.init({
+  duration: 1000,
+  once: true,
+ });
+
+ // Mobile Menu Toggle
+ const menuBtn = document.getElementById('menu-btn');
+ const mobileMenu = document.getElementById('mobile-menu');
+
+ menuBtn.addEventListener('click', () => {
+  mobileMenu.classList.toggle('hidden');
+ });
+
+ // Language Toggle
+ const enBtn = document.getElementById('en-btn');
+ const zhBtn = document.getElementById('zh-btn');
+
+ enBtn.addEventListener('click', () => {
+  setLanguage('en');
+ });
+
+ zhBtn.addEventListener('click', () => {
+  setLanguage('zh');
+ });
+
+ function setLanguage(lang) {
+  const elements = document.querySelectorAll('[data-lang]');
+  elements.forEach(el => {
+   if (el.getAttribute('data-lang') === lang) {
+    el.classList.remove('hidden');
+   } else {
+    el.classList.add('hidden');
+   }
+  });
+ }
+
+ // Set default language to English
+ setLanguage('en');
+</script>
+</body>
 </html>
